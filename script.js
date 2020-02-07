@@ -1,11 +1,22 @@
 let test = true;
-document.getElementById("dialog").style.display = 'none';
+document.getElementById("dialog").style.display = "none";
+// while(1){
+//     document.getElementById("dialog").style.display = 'none';
+// }
+setInterval( function(){
+    document.getElementById("note").style.display = "none";
+    setTimeout( function(){
+        document.getElementById("note").style.display = "block";
+    },500);
+},1000);
+
+
 // lớp hình ảnh
 let Image = function(arrImage) {
     this.arrImages = arrImage;
     this.count = 0;
     this.nextImage = function () {
-        if (this.count >= 0 && this.count < arrImages.length - 1) {
+        if (this.count >= 0 && this.count < this.arrImages.length - 1) {
             this.count++;
         }
     };
@@ -17,7 +28,7 @@ let Image = function(arrImage) {
     };
     this.changeImage = function () {
         this.nextImage();
-        this.setImage(arrImages[this.count]);
+        this.setImage(this.arrImages[this.count]);
         document.getElementById("image").src = this.getImage();
     };
     // this.setCountToZero = function(){
@@ -59,7 +70,6 @@ let Answers = function(arrAnswers) {
                     },1000);
                     //b('ima/fire.mp3').play();
                     //setInterval(audio.play,4000);
-
                 }
             } else if (this.Answer == "") {
                 alert("Bạn chưa nhập câu trả lời!");
@@ -81,7 +91,6 @@ let Answers = function(arrAnswers) {
                 return document.getElementById("notification").innerHTML = "<br>" + "<br>" + 'Rất tiếc!' + "<br>" + "<br>"
                     + "<img style='width: 130px; height: 130px' " +
                     "src='https://i.pinimg.com/originals/a7/5d/a8/a75da8d93ba6291985ba77ee84fb6de3.gif'>";
-
                 //document.getElementById("Answer").value = null;
              }
         }
