@@ -54,7 +54,9 @@ let Answers = function(arrAnswers) {
                     document.getElementById("dialog").style.display = 'block';
                     test = false;
                     audio.src = 'audio/fire.mp3';
-                    audio.play();
+                    setInterval(function (){
+                        audio.play()
+                    },1000);
                     //b('ima/fire.mp3').play();
                     //setInterval(audio.play,4000);
 
