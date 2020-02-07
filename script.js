@@ -9,8 +9,6 @@ setInterval( function(){
         document.getElementById("note").style.display = "block";
     },500);
 },1000);
-
-
 // lớp hình ảnh
 let Image = function(arrImage) {
     this.arrImages = arrImage;
@@ -159,4 +157,3 @@ let image = new Image(arrImages);
 let answers = new Answers(arrAnswers);
 let point = new Points(0,0,0);
 let audio = new Audio();
-let b = new a();
