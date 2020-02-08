@@ -1,4 +1,5 @@
 let test = true;
+let a;
 document.getElementById("dialog").style.display = "none";
 // Text effect
 setInterval( function(){
@@ -7,26 +8,6 @@ setInterval( function(){
         document.getElementById("note").style.display = "block";
     },500);
 },1000);
-let a;
-function animation() {
-    a = setInterval(function () {
-            document.getElementById("point").style.display = "none";
-            setTimeout(function () {
-                document.getElementById("point").style.display = "block";
-            }, 100);
-        }, 200);
-}
-function clear(){
-    clearInterval(a);
-}
-// for(let i = 0; i < 10; i++){
-//        // setInterval( function(){
-//         document.getElementById("point").style.display = "none";
-//         setTimeout( function(){
-//             document.getElementById("point").style.display = "block";
-//         },1000);
-//    // },1000);
-// }
 // class Images
 let Image = function(arrImage) {
     this.arrImages = arrImage;
@@ -56,9 +37,10 @@ let Answers = function(arrAnswers) {
             this.Answer = document.getElementById("Answer").value;
         };
     this.checkInput = function() {
-        if (this.Answer == "ném đá dấu tay" || this.value == "NEM DA DAU TAY" || this.value == "NÉM ĐÁ DẤU TAY" || "Ném đá dấu tay") {
+        if (this.Answer == "ném đá dấu tay" || this.Answer == "NEM DA DAU TAY" || this.Answer == "NÉM ĐÁ DẤU TAY" || this.Answer== "Ném đá dấu tay"
+        || this.Answer == "nem da dau tay") {
             this.Answer = "0";
-        } else if (this.Answer == "nhạc cụ" || this.Answer == "NHẠC CỤ" || this.Answer == "Nhạc cụ" || this.Answer == "NHAC CU") {
+        } else if (this.Answer == "b" || this.Answer == "CỤ" || this.Answer == "cu" || this.Answer == "CU") {
             this.Answer = "1";
         } else if (this.Answer == "c" || this.Answer == "C") {
             this.Answer = "2";
@@ -69,16 +51,28 @@ let Answers = function(arrAnswers) {
             this.Answer = "";
         }
     };
-    this.getAnswer = function(){
-        return this.Answer;
+    this.animation = function() {
+        a = setInterval(function () {
+            document.getElementById("point").style.display = "none";
+            setTimeout(function () {
+                document.getElementById("point").style.display = "block";
+            }, 100);
+        }, 200);
+    };
+    this.clear = function(){
+        clearInterval(a);
     };
     this.checkAnswer = function () {
         if(test){
+            tmp = this;
             this.setAnswer();
+            //this.getAnswer();
             this.checkInput();
             point.setTurn();
-            point.getTurn();
-            if (this.getAnswer() == this.arrAnswers[image.count]) {
+            setTimeout(function () {
+                point.getTurn();
+            },1000);
+            if (this.Answer == this.arrAnswers[image.count]) {
                 document.getElementById("notification").innerHTML = "<br>" + 'Chúc mừng bạn!'+ "<br>"
                         + "<img style='width: 200px; height: 200px' " + "src='ima/like.gif'>";
                 audio.src = 'audio/true.mp3';
@@ -86,10 +80,10 @@ let Answers = function(arrAnswers) {
                 image.changeImage();
                 point.setPoint();
                 point.getPoint();
-                animation();
+                this.animation();
                 setTimeout(function(){
-                    clear();
-                    },400);
+                    tmp.clear();
+                    },500);
                 // animation();
                 document.getElementById("Answer").value = null;
                 if (point.point == 40) //need to update
@@ -99,11 +93,11 @@ let Answers = function(arrAnswers) {
                     test = false;
                     audio.src = 'audio/fire.mp3';
                     setTimeout(function (){
-                        clear();
-                    },300);
+                        audio.play();
+                    },3000);
                 }
             }
-            else if (this.getAnswer() == "") {
+            else if (this.Answer == "") {
                 alert("Bạn chưa nhập câu trả lời!");
                 return document.getElementById("notification").innerHTML = "<br>" + "Chưa nhập câu trả lời!" + "<br>" + "<br>" +
                     "<img style='width: 130px; height: 130px' " +
@@ -111,13 +105,15 @@ let Answers = function(arrAnswers) {
             }
             else if(point.lose >= 3){
                 point.setLose();
-                point.getLose();
+                setTimeout(function(){
+                    point.getLose();
+                },1000);
                 audio.src = 'audio/false.mp3';
                 alert("You lose!");
             }
             else {
                 point.setLose();
-                point.getLose();
+                setTimeout(function(){point.getLose();},1000);
                 audio.src = 'audio/false.mp3';
                 audio.play();
                 return document.getElementById("notification").innerHTML = "<br>" + "<br>" + 'Rất tiếc!' + "<br>" + "<br>"
@@ -167,7 +163,6 @@ let Points = function(point,turn,lose){
             "Người chơi nhập vào câu trả lời ở ô nhập và click vào nút check để kiểm tra kết quả!";
         document.getElementById("Answer").value = null;
     };
-   // this.a = false;
     this.resetResults = function() {
          document.getElementById("image").src = arrImages[0];
          this.reset();
@@ -182,6 +177,5 @@ let arrAnswers = ["0","1","2","3"];
 let image = new Image(arrImages);
 let answers = new Answers(arrAnswers);
 let point = new Points(0,0,0);
-//let Check_spelling = new checkInput(value);
 let audio = new Audio();
 
