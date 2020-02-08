@@ -48,7 +48,7 @@ let Answers = function(arrAnswers) {
             this.Answer = "3";
         }
         else{
-            this.Answer = "";
+            this.Answer = "false";
         }
     };
     this.animation = function() {
@@ -111,15 +111,16 @@ let Answers = function(arrAnswers) {
                 audio.src = 'audio/false.mp3';
                 alert("You lose!");
             }
-            else {
+            else if(this.Answer == "false") {
                 point.setLose();
                 setTimeout(function(){point.getLose();},1000);
                 audio.src = 'audio/false.mp3';
                 audio.play();
+                document.getElementById("Answer").value = null;
                 return document.getElementById("notification").innerHTML = "<br>" + "<br>" + 'Rất tiếc!' + "<br>" + "<br>"
                     + "<img style='width: 130px; height: 130px' " +
                     "src='https://i.pinimg.com/originals/a7/5d/a8/a75da8d93ba6291985ba77ee84fb6de3.gif'>";
-                //document.getElementById("Answer").value = null;
+
              }
         }
     };
