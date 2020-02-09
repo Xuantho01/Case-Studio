@@ -94,7 +94,7 @@ let Answers = function(arrAnswers) {
                     audio.src = 'audio/fire.mp3';
                     setInterval(function (){
                         audio.play();
-                    },3000);
+                    },100);
                 }
             }
             else if (this.Answer == "") {
