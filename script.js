@@ -120,14 +120,33 @@ let Answers = function(arrAnswers) {
                 return document.getElementById("notification").innerHTML = "<br>" + "<br>" + 'Rất tiếc!' + "<br>" + "<br>"
                     + "<img style='width: 130px; height: 130px' " +
                     "src='https://i.pinimg.com/originals/a7/5d/a8/a75da8d93ba6291985ba77ee84fb6de3.gif'>";
-
              }
+        // myForm.submit();
         }
     };
     this.display = function () {
         return document.getElementById("notification").innerHTML = "<img style='width: 130px; height: 130px' " +
             "src='https://media1.tenor.com/images/c3324236b32e659783734fe2813603c8/tenor.gif?itemid=15112797'>";
     };
+    //this.key = false;
+    // this.eventKey = function(){
+    //     document.addEventListener('keydown',function(event){
+    //         if(event.keyCode == 13){
+    //             tmp.key = true;
+    //             tmp.checkAnswer();
+    //             console.log(tmp.key);
+    //         }
+    //     });
+    // };
+    this.eventKey = () => {
+        // document.addEventListener('keydown',function(event){
+            if(event.keyCode == 13){
+                // tmp.key = true;
+                this.checkAnswer();
+                // console.log(tmp.key);
+            }
+        // });
+    }
 };
 // Class Point
 let Points = function(point,turn,lose){
@@ -170,7 +189,7 @@ let Points = function(point,turn,lose){
          test = true;
     }
 };
-let arrImages = ["https://files.vforum.vn/2014/T10/img/vforum.vn-133676-10309683-755442207841364-361679200786066980-n.jpg",
+let arrImages = ["https://files.vforum.vn/2014/T10/img/vforum.vn-133676-10262185-473271902807147-7738376419430735243-n.jpg",
               "https://files.vforum.vn/2014/T10/img/vforum.vn-133676-1011229-473268726140798-1607420842666641281-n.jpg",
               "https://files.vforum.vn/2014/T10/img/vforum.vn-133676-10262185-473271902807147-7738376419430735243-n.jpg",
               "https://files.vforum.vn/2014/T10/img/vforum.vn-133676-10402396-755442184508033-1390713449637084439-n.jpg"];
@@ -179,4 +198,4 @@ let image = new Image(arrImages);
 let answers = new Answers(arrAnswers);
 let point = new Points(0,0,0);
 let audio = new Audio();
-
+answers.eventKey();
