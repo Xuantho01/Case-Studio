@@ -37,8 +37,8 @@ let Answers = function(arrAnswers) {
             this.Answer = document.getElementById("Answer").value;
         };
     this.checkInput = function() {
-        if (this.Answer == "ném đá dấu tay" || this.Answer == "NEM DA DAU TAY" || this.Answer == "NÉM ĐÁ DẤU TAY" || this.Answer== "Ném đá dấu tay"
-        || this.Answer == "nem da dau tay") {
+        if (this.Answer == "ném đá giấu tay" || this.Answer == "NEM DA GIAU TAY" || this.Answer == "NÉM ĐÁ GIẤU TAY" || this.Answer== "Ném đá giấu tay"
+        || this.Answer == "nem da giau tay") {
             this.Answer = "0";
         } else if (this.Answer == "nhạc cụ" || this.Answer == "nhac cu" || this.Answer == "NHẠC CỤ" || this.Answer == "NHAC CU") {
             this.Answer = "1";
